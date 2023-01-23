@@ -19,6 +19,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // Get data from state
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
@@ -76,6 +77,7 @@ const Register = () => {
             <input
               type="name"
               id="name"
+              name="name"
               value={name}
               placeholder="Enter your name"
               className="w-80 h-10 bg-white text-black input input-bordered sm:w-[27rem]"
@@ -87,6 +89,7 @@ const Register = () => {
             <input
               type="email"
               id="email"
+              name="email"
               value={email}
               placeholder="Enter your email"
               className="w-80 h-10 bg-white text-black input input-bordered sm:w-[27rem]"
@@ -98,6 +101,7 @@ const Register = () => {
             <input
               type="password"
               id="password"
+              name="password"
               value={password}
               placeholder="Enter your password"
               className="w-80 h-10 bg-white text-black input input-bordered sm:w-[27rem]"
@@ -109,6 +113,7 @@ const Register = () => {
             <input
               type="password"
               id="password2"
+              name="password2"
               value={password2}
               placeholder="Confirm password"
               className="w-80 h-10 bg-white text-black input input-bordered sm:w-[27rem]"
