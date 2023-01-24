@@ -53,7 +53,7 @@ const Login = () => {
 
   return (
     <div>
-      <div className="mt-4">
+      <div className="mt-12">
         <h1 className="text-center text-2xl">
           <FaSignInAlt className="inline-block" />
           <span className="ml-2">Login into your account</span>

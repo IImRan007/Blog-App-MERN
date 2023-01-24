@@ -18,7 +18,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-[#1212128f] ">
       <div className="flex-1">
         <Link to="/" className="btn btn-ghost normal-case text-xl">
           Blog
@@ -31,6 +31,9 @@ const Navbar = () => {
               <Link to="/logout">
                 <FaSignOutAlt /> Logout
               </Link>
+            </li>
+            <li className="mr-2">
+              <Link to="/new-blog">Create Blog</Link>
             </li>
           </ul>
         </div>
