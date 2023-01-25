@@ -3,10 +3,10 @@ import MultiSelect from "react-multiple-select-dropdown-lite";
 import "react-multiple-select-dropdown-lite/dist/index.css";
 
 const NewBlog = () => {
-  const [value, setvalue] = useState("");
+  const [dropdownValue, setDropdownValue] = useState("");
 
   const handleOnchange = (val) => {
-    setvalue(val);
+    setDropdownValue(val.split(","));
   };
 
   const options = [
@@ -43,10 +43,10 @@ const NewBlog = () => {
         </div>
         <div className="flex flex-col mt-4 gap-y-2">
           <label className="text-[24px]">Image</label>
-          <input type="file" accept="image/*" />
+          <input type="file" accept="image/*" name="file" />
         </div>
         <div className="flex flex-col mt-4 gap-y-2">
-          <label className="text-[24px]">Label</label>
+          <label className="text-[24px]">Tags</label>
           <MultiSelect
             onChange={handleOnchange}
             options={options}
