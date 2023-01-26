@@ -9,7 +9,7 @@ const Blog = require("../models/blogModel");
 const createBlog = asyncHandler(async (req, res) => {
   const { title, description, imgFile, tags } = req.body;
 
-  if (!title || !description || !tags) {
+  if (!title || !description || imgFile || !tags) {
     res.status(400);
     throw new Error("Please include all the fields");
   }
