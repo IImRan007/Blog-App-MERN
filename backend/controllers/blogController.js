@@ -1,6 +1,4 @@
 const asyncHandler = require("express-async-handler");
-const fs = require("fs");
-const path = require("path");
 
 const User = require("../models/userModel");
 const Blog = require("../models/blogModel");
@@ -10,7 +8,6 @@ const Blog = require("../models/blogModel");
 // @access Private
 const createBlog = asyncHandler(async (req, res) => {
   const { title, description, imgFile, tags } = req.body;
-  console.log(req.body);
 
   if (!title || !description || !tags) {
     res.status(400);
@@ -25,20 +22,16 @@ const createBlog = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 
-  const blog = {
+  const blog = await Blog.create({
     title,
     description,
     imgFile: {
-      // data: req.file.buffer,
-      data: fs.readFileSync(
-        path.join(__dirname + "/uploads/" + req.file.filename)
-      ),
+      data: req.file.buffer,
       contentType: req.file.mimetype,
     },
     tags,
     user: req.user.id,
-  };
-  console.log(blog);
+  });
 
   res.status(201).json(blog);
 });

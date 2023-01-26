@@ -22,7 +22,7 @@ const blogSchema = mongoose.Schema(
     tags: {
       type: String,
       required: [true, "Please add a tag"],
-      enum: ["Programming", "Science", "Technology"],
+      enum: ["Programming", "Science", "Technology", "History"],
     },
   },
   {
