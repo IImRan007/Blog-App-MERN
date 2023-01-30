@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NewBlog from "./pages/NewBlog";
+import Blog from "./pages/Blog";
 import PrivateRoute from "./components/PrivateRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -21,6 +22,9 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/new-blog" element={<PrivateRoute />}>
             <Route path="/new-blog" element={<NewBlog />} />
+          </Route>
+          <Route path="/blog/:blogId" element={<PrivateRoute />}>
+            <Route path="/blog/:blogId" element={<Blog />} />
           </Route>
         </Routes>
       </Router>
