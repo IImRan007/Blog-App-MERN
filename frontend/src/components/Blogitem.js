@@ -3,6 +3,7 @@ import { Buffer } from "buffer";
 import { useSelector, useDispatch } from "react-redux";
 import { getBlogs, reset } from "../features/blogs/blogSlice";
 import Spinner from "./Spinner";
+import { Link } from "react-router-dom";
 
 const Blogitem = () => {
   const { blogs, isLoading, isSuccess } = useSelector((state) => state.blogs);
@@ -27,28 +28,46 @@ const Blogitem = () => {
 
   return (
     <div className="mt-8 p-4 flex flex-wrap gap-x-8 gap-y-8 justify-around">
-      {blogs.map((blog) => (
-        <div className="card w-96 shadow-xl bg-black" key={blog._id}>
-          <figure>
-            <img
-              src={`data:${blog.imgFile.contentType};base64, ${Buffer.from(
-                blog.imgFile.data
-              ).toString("base64")}`}
-              alt="Shoes"
-            />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">
-              {blog.title}
-              <div className="badge badge-secondary">NEW</div>
-            </h2>
-            <p>{blog.description}</p>
-            <div className="card-actions justify-end">
-              <div className="badge badge-outline">{blog.tags}</div>
+      {blogs &&
+        blogs.map((blog) => (
+          <div className="card w-96 shadow-xl bg-black" key={blog._id}>
+            <figure className=" h-[24vh]">
+              <img
+                src={`data:${blog.imgFile.contentType};base64, ${Buffer.from(
+                  blog.imgFile.data
+                ).toString("base64")}`}
+                alt="Shoes"
+              />
+            </figure>
+            <div className="card-body h-[37vh]">
+              <h2 className="card-title">
+                {blog.title}
+                <div className="badge badge-secondary">NEW</div>
+              </h2>
+              <p>{blog.description.slice(0, 200)}...</p>
+              <div className="card-actions justify-end">
+                <div className="badge badge-outline">
+                  {new Date(blog.createdAt).toLocaleDateString("en-US")}
+                </div>
+                {blog.tags.map((tag) => {
+                  let result = tag.split(",");
+                  return result.map((elem, i) => (
+                    <div className="badge badge-outline" key={i}>
+                      {[elem]}
+                    </div>
+                  ));
+                })}
+              </div>
+              <div className="flex justify-center">
+                <Link to={`/blog/${blog._id}`}>
+                  <button className="btn btn-wide btn-primary mt-4">
+                    Read More
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 };

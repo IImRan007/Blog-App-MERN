@@ -26,6 +26,7 @@ const NewBlog = () => {
 
   // Dropdown change
   const handleOnchange = (val) => {
+    console.log(val);
     setTags(val);
   };
 

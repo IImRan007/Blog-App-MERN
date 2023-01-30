@@ -19,11 +19,7 @@ const blogSchema = mongoose.Schema(
       data: Buffer,
       contentType: String,
     },
-    tags: {
-      type: String,
-      required: [true, "Please add a tag"],
-      enum: ["Programming", "Science", "Technology", "History"],
-    },
+    tags: ["Programming", "Science", "Technology", "History"],
   },
   {
     timestamps: true,
