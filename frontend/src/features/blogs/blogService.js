@@ -4,7 +4,6 @@ const API_URL = "/api/blogs/";
 
 // Create blog
 const createBlog = async (blogData, token) => {
-  console.log(blogData);
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -42,6 +41,33 @@ const getBlog = async (blogId, token) => {
   return response.data;
 };
 
-const blogService = { createBlog, getBlogs, getBlog };
+// Update blog
+const updateBlog = async (blogId, blogData, token) => {
+  console.log(blogData);
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.put(API_URL + blogId, blogData, config);
+
+  return response.data;
+};
+
+// Delete user blog
+const deleteBlog = async (blogId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.delete(API_URL + blogId, config);
+
+  return response.data;
+};
+
+const blogService = { createBlog, getBlogs, getBlog, updateBlog, deleteBlog };
 
 export default blogService;
