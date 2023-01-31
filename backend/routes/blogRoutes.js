@@ -8,6 +8,7 @@ const {
   getBlog,
   updateBlog,
   deleteBlog,
+  getAllBlogs,
 } = require("../controllers/blogController");
 
 const storage = multer.memoryStorage();
@@ -17,6 +18,8 @@ router
   .route("/")
   .get(protect, getBlogs)
   .post(protect, upload.single("imgFile"), createBlog);
+
+router.route("/all").get(getAllBlogs);
 
 router
   .route("/:id")

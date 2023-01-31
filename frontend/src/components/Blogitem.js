@@ -34,13 +34,13 @@ const Blogitem = () => {
             All Blogs
           </button>
         </Link>
-        <Link to="/my-blogs">
+        {/* <Link to="/my-blogs">
           <button className="text-[20px] text-center mt-8 btn btn-ghost">
             Your Blogs
           </button>
-        </Link>
+        </Link> */}
       </div>
-      <div className="mt-8 p-4 flex flex-wrap gap-x-8 gap-y-8 justify-around">
+      <div className="mt-8 p-8 flex flex-wrap gap-x-8 gap-y-8">
         {blogs &&
           blogs.map((blog) => (
             <div className="card w-96 shadow-xl bg-black" key={blog._id}>

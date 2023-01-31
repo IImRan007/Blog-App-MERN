@@ -26,7 +26,6 @@ const NewBlog = () => {
 
   // Dropdown change
   const handleOnchange = (val) => {
-    console.log(val);
     setTags(val);
   };
 
@@ -72,6 +71,7 @@ const NewBlog = () => {
     formData.append("tags", tags);
 
     dispatch(createBlog(formData));
+
     navigate("/");
   };
 
@@ -84,51 +84,55 @@ const NewBlog = () => {
       <div>
         <h1 className="text-[24px] text-center">Create New Blog</h1>
       </div>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div className="flex flex-col mt-4 gap-y-2">
-          <label className="text-[24px]">Title</label>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            value={title}
-            className="h-9 bg-white text-black input input-bordered"
-            placeholder="Enter blog title"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="flex flex-col mt-4 gap-y-2">
-          <label className="text-[24px]">Description</label>
-          <textarea
-            name="description"
-            id="description"
-            value={description}
-            placeholder="Enter description"
-            className="h-[8.5rem] bg-white text-black input input-bordered"
-            onChange={handleChange}
-          ></textarea>
-        </div>
-        <div className="flex flex-col mt-4 gap-y-2">
-          <label className="text-[24px]">Image</label>
-          <input
-            type="file"
-            accept=".png, .jpg, .jpeg"
-            name="imgFile"
-            id="imgFile"
-            required
-            onChange={onImageChange}
-          />
-        </div>
-        <div className="flex flex-col mt-4 gap-y-2">
-          <label className="text-[24px]">Tags</label>
-          <MultiSelect
-            onChange={handleOnchange}
-            options={options}
-            className="text-black"
-          />
-        </div>
-        <button className="btn mt-8">Create Blog</button>
-      </form>
+      <div className="flex justify-center">
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
+          <div className="flex flex-col mt-4 gap-y-2">
+            <label className="text-[24px]">Title</label>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              value={title}
+              className="h-9 bg-white text-black input input-bordered w-[22rem] sm:w-[27rem] md:w-[32rem] lg:w-[34rem]"
+              placeholder="Enter blog title"
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="flex flex-col mt-4 gap-y-2">
+            <label className="text-[24px]">Description</label>
+            <textarea
+              name="description"
+              id="description"
+              value={description}
+              placeholder="Enter description"
+              className="h-[14rem] bg-white text-black input input-bordered w-[22rem] sm:w-[27rem] md:w-[32rem] lg:w-[34rem]"
+              onChange={handleChange}
+              required
+            ></textarea>
+          </div>
+          <div className="flex flex-col mt-4 gap-y-2">
+            <label className="text-[24px]">Image</label>
+            <input
+              type="file"
+              accept=".png, .jpg, .jpeg"
+              name="imgFile"
+              id="imgFile"
+              required
+              onChange={onImageChange}
+            />
+          </div>
+          <div className="flex flex-col mt-4 gap-y-2">
+            <label className="text-[24px]">Tags</label>
+            <MultiSelect
+              onChange={handleOnchange}
+              options={options}
+              className="text-black"
+            />
+          </div>
+          <button className="btn mt-8">Create Blog</button>
+        </form>
+      </div>
     </div>
   );
 };

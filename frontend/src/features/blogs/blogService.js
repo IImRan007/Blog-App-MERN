@@ -28,6 +28,19 @@ const getBlogs = async (token) => {
   return response.data;
 };
 
+// Get all blogs
+const getAllBlogs = async (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.get(API_URL + "all", config);
+
+  return response.data;
+};
+
 // Get user blog
 const getBlog = async (blogId, token) => {
   const config = {
@@ -68,6 +81,13 @@ const deleteBlog = async (blogId, token) => {
   return response.data;
 };
 
-const blogService = { createBlog, getBlogs, getBlog, updateBlog, deleteBlog };
+const blogService = {
+  createBlog,
+  getBlogs,
+  getAllBlogs,
+  getBlog,
+  updateBlog,
+  deleteBlog,
+};
 
 export default blogService;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { deleteBlog, getBlog, updateBlog } from "../features/blogs/blogSlice";
 import Spinner from "../components/Spinner";
 
@@ -34,10 +34,11 @@ const Blog = () => {
   }, [blog.title, blog.description]);
 
   const handleUpdate = () => {
-    console.log({ title, description, blogId });
     const blogData = { title, description, blogId };
     dispatch(updateBlog(blogData));
+
     navigate("/");
+    toast.success(`Blog: ${blog.title} updated successfully`);
   };
 
   const handleDelete = () => {
@@ -54,13 +55,16 @@ const Blog = () => {
 
   return (
     <>
-      <div className="mt-8 flex justify-end">
+      <div className="mt-8 flex justify-between items-center">
+        <Link to="/">
+          <button className="ml-4 btn btn-outline">Back</button>
+        </Link>
         <p className="border-solid border-2 p-[4px] rounded-[6px] mr-[1.5rem]">
           Created At: {new Date(blog.createdAt).toLocaleDateString()}
         </p>
       </div>
       <div>
-        <h1 className="text-[20px] mt-8 ml-4">{blog.title}</h1>
+        <h1 className="text-[20px] mt-8 ml-4">Title: {blog.title}</h1>
       </div>
       <div className="p-4">
         <h1>Description:</h1>

@@ -53,6 +53,15 @@ const getBlogs = asyncHandler(async (req, res) => {
   res.status(200).json(blogs);
 });
 
+// @desc Get all blogs
+// @route POST /api/blogs/all
+// @access Public
+const getAllBlogs = asyncHandler(async (req, res) => {
+  const data = await Blog.find({});
+
+  res.status(200).json(data);
+});
+
 // @desc Get user single blog
 // @route POST /api/blogs/:id
 // @access Private
@@ -140,4 +149,11 @@ const deleteBlog = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true });
 });
 
-module.exports = { createBlog, getBlogs, getBlog, updateBlog, deleteBlog };
+module.exports = {
+  createBlog,
+  getBlogs,
+  getAllBlogs,
+  getBlog,
+  updateBlog,
+  deleteBlog,
+};
