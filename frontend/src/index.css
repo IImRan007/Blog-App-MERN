@@ -40,6 +40,11 @@
   animation-delay: 0s;
 }
 
+a.active {
+  color: #fff;
+  text-decoration: underline;
+}
+
 @keyframes animloader {
   0% {
     height: 48px;

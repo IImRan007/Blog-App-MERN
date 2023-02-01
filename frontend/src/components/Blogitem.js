@@ -3,34 +3,17 @@ import { Buffer } from "buffer";
 import { useSelector, useDispatch } from "react-redux";
 import { getBlogs, reset } from "../features/blogs/blogSlice";
 import Spinner from "./Spinner";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Blogitem = () => {
-  const { blogs, isLoading, isSuccess, isError, message } = useSelector(
-    (state) => {
-      console.log("state", state.blogs);
-      return state.blogs;
-    }
-  );
+  const { blogs, isLoading, isError, message } = useSelector((state) => {
+    console.log("state", state.blogs);
+    return state.blogs;
+  });
 
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   // dispatch(getBlogs());
-  //   console.log(blogs);
-  //   console.log("asd");
-
-  //   return () => {
-  //     if (isSuccess) {
-  //       dispatch(reset());
-  //     }
-  //     console.log("unMountBlogItem");
-  //   };
-  // }, [dispatch, isSuccess]);
-
-  // useEffect(() => {
-  //   dispatch(getBlogs());
-  // }, [dispatch]);
 
   useEffect(() => {
     if (isError) {
@@ -51,27 +34,34 @@ const Blogitem = () => {
   return (
     <>
       <div className="flex justify-center gap-x-4">
-        <Link to="/">
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "active" : "inactive")}
+        >
           <button className="text-[20px] text-center mt-8 btn btn-ghost">
             All Blogs
           </button>
-        </Link>
-        {/* <Link to="/my-blogs">
+        </NavLink>
+        <NavLink
+          to="/my-blogs"
+          className={({ isActive }) => (isActive ? "active" : "inactive")}
+        >
           <button className="text-[20px] text-center mt-8 btn btn-ghost">
             Your Blogs
           </button>
-        </Link> */}
+        </NavLink>
       </div>
-      <div className="mt-8 p-8 flex flex-wrap gap-x-8 gap-y-8">
+      <div className="mt-8 p-8 flex justify-around flex-wrap gap-x-16 gap-y-16">
         {blogs &&
           blogs.map((blog) => (
             <div className="card w-96 shadow-xl bg-black" key={blog._id}>
               <figure className=" h-[24vh]">
-                <img
+                <LazyLoadImage
                   src={`data:${blog.imgFile.contentType};base64, ${Buffer.from(
                     blog.imgFile.data
                   ).toString("base64")}`}
-                  alt="Shoes"
+                  alt="poster"
+                  effect="blur"
                 />
               </figure>
               <div className="card-body h-[40vh]">

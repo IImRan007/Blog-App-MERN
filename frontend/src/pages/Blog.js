@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Buffer } from "buffer";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -23,6 +24,8 @@ const Blog = () => {
     }
 
     dispatch(getBlog(blogId));
+    console.log(blog);
+
     // eslint-disable-next-line
   }, [isError, message, blogId]);
 
@@ -35,10 +38,9 @@ const Blog = () => {
 
   const handleUpdate = () => {
     const blogData = { title, description, blogId };
-    dispatch(updateBlog(blogData));
-
-    navigate("/");
-    toast.success(`Blog: ${blog.title} updated successfully`);
+    dispatch(updateBlog(blogData)).then(() => {
+      toast.success(`Blog: "${blog.title}" updated successfully`);
+    });
   };
 
   const handleDelete = () => {
@@ -64,6 +66,14 @@ const Blog = () => {
           Created At: {new Date(blog.createdAt).toLocaleDateString()}
         </p>
       </div>
+      {/* <figure className=" h-[24vh]">
+        <img
+          src={`data:${blog.imgFile.contentType};base64, ${Buffer.from(
+            blog.imgFile.data
+          ).toString("base64")}`}
+          alt="poster"
+        />
+      </figure> */}
       <div>
         <h1 className="text-[20px] mt-8 ml-4">Title: {blog.title}</h1>
       </div>
