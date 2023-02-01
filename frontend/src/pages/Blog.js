@@ -42,10 +42,11 @@ const Blog = () => {
   };
 
   const handleDelete = () => {
-    dispatch(deleteBlog(blogId));
-    if (isSuccess) {
-      navigate("/");
-    }
+    dispatch(deleteBlog(blogId)).then(() => {
+      if (isSuccess) {
+        navigate("/");
+      }
+    });
     toast.success(`Blog: ${blog.title} deleted successfully`);
   };
 

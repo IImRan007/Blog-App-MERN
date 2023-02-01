@@ -70,9 +70,10 @@ const NewBlog = () => {
     formData.append("imgFile", imgFile);
     formData.append("tags", tags);
 
-    dispatch(createBlog(formData));
-
-    navigate("/");
+    dispatch(createBlog(formData)).then(() => {
+      console.log("navigate");
+      navigate("/");
+    });
   };
 
   if (isLoading) {

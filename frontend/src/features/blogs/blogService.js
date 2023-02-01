@@ -11,6 +11,7 @@ const createBlog = async (blogData, token) => {
   };
 
   const response = await axios.post(API_URL, blogData, config);
+  console.log("post request", response.data);
 
   return response.data;
 };
@@ -24,6 +25,7 @@ const getBlogs = async (token) => {
   };
 
   const response = await axios.get(API_URL, config);
+  console.log("respone data", response.data);
 
   return response.data;
 };

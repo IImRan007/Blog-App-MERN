@@ -15,17 +15,32 @@ const App = () => {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<PrivateRoute />}>
-            <Route path="/" element={<Home />} />
-          </Route>
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/new-blog" element={<PrivateRoute />}>
-            <Route path="/new-blog" element={<NewBlog />} />
-          </Route>
-          <Route path="/blog/:blogId" element={<PrivateRoute />}>
-            <Route path="/blog/:blogId" element={<Blog />} />
-          </Route>
+          <Route
+            path="/new-blog"
+            element={
+              <PrivateRoute>
+                <NewBlog />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/blog/:blogId"
+            element={
+              <PrivateRoute>
+                <Blog />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </Router>
       <ToastContainer />

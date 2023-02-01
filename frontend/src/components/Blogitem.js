@@ -6,20 +6,42 @@ import Spinner from "./Spinner";
 import { Link } from "react-router-dom";
 
 const Blogitem = () => {
-  const { blogs, isLoading, isSuccess } = useSelector((state) => state.blogs);
+  const { blogs, isLoading, isSuccess, isError, message } = useSelector(
+    (state) => {
+      console.log("state", state.blogs);
+      return state.blogs;
+    }
+  );
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    return () => {
-      if (isSuccess) {
-        dispatch(reset());
-      }
-    };
-  }, [dispatch, isSuccess]);
+  // useEffect(() => {
+  //   // dispatch(getBlogs());
+  //   console.log(blogs);
+  //   console.log("asd");
+
+  //   return () => {
+  //     if (isSuccess) {
+  //       dispatch(reset());
+  //     }
+  //     console.log("unMountBlogItem");
+  //   };
+  // }, [dispatch, isSuccess]);
+
+  // useEffect(() => {
+  //   dispatch(getBlogs());
+  // }, [dispatch]);
 
   useEffect(() => {
+    if (isError) {
+      console.log(message);
+    }
+
     dispatch(getBlogs());
+  }, [isError, message, dispatch]);
+
+  useEffect(() => {
+    return () => dispatch(reset());
   }, [dispatch]);
 
   if (isLoading) {
