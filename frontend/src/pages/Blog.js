@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { Buffer } from "buffer";
+// import { Buffer } from "buffer";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { deleteBlog, getBlog, updateBlog } from "../features/blogs/blogSlice";
 import Spinner from "../components/Spinner";
+// import { LazyLoadImage } from "react-lazy-load-image-component";
+// import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Blog = () => {
   const { blog, isLoading, isSuccess, isError, message } = useSelector(
@@ -66,12 +68,15 @@ const Blog = () => {
           Created At: {new Date(blog.createdAt).toLocaleDateString()}
         </p>
       </div>
-      {/* <figure className=" h-[24vh]">
-        <img
-          src={`data:${blog.imgFile.contentType};base64, ${Buffer.from(
-            blog.imgFile.data
-          ).toString("base64")}`}
+      {/* <figure className="w-[100%] h-[10em] overflow-hidden">
+        <LazyLoadImage
+          src={`data:image/jpeg;base64,${blog.imgFile.data.data}`}
+          // src={`data:${blog.imgFile.contentType};base64, ${Buffer.from(
+          //   blog.imgFile.data
+          // ).toString("base64")}`}
           alt="poster"
+          effect="blur"
+          className="min-w-full min-h-full"
         />
       </figure> */}
       <div>
